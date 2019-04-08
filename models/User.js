@@ -17,7 +17,10 @@ var User = {
         return db.query("delete from Users where Id = ?", [id], callback);
       },
       updateUser: function(id, User, callback){
-          return db.query("update Users set name=?, username=? where ID=?", [User.Id, User.name, User.username, User.email, User.password], callback);
+          let sql = "UPDATE Users SET name=?, username=? , email=?, password=? WHERE Id=?";
+          let data = [User.name, User.username, User.email, User.password, id];
+          console.log(data);
+          return db.query(sql, data, callback );
       }
 };
 
