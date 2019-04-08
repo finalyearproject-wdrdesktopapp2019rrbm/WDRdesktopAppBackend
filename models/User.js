@@ -19,7 +19,6 @@ var User = {
       updateUser: function(id, User, callback){
           let sql = "UPDATE Users SET name=?, username=? , email=?, password=? WHERE Id=?";
           let data = [User.name, User.username, User.email, User.password, id];
-          console.log(data);
           return db.query(sql, data, callback );
       }
 };
