@@ -88,3 +88,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+//show started
+console.log('API started \n  listening ...........................');
