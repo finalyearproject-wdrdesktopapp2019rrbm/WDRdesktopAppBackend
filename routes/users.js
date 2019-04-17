@@ -2,7 +2,17 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 
-// select user ng 
+// user authentication
+router.post('/authenticate', function(req, res, next){
+  if(req.method == 'POST'){
+    console.log(req.params.username);
+    console.log(req.password);
+    // User.loginCheck(req.)
+  }else res.json(err);
+})
+
+
+// select user ng
 router.get('/:id?', function(req, res, next) {
   if(req.params.id){
     User.getUserById(req.params.id,  function(err, rows){

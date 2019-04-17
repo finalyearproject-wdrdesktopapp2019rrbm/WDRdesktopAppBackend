@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
 /**
@@ -91,4 +91,4 @@ function onListening() {
 
 
 //show started
-console.log('API started \n  listening ...........................');
+console.log('API started \n  Server runing on http://localhost:', port);
