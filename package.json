@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
@@ -22,6 +23,7 @@
     "morgan": "~1.9.0",
     "multer": "^1.4.1",
     "mysql": "^2.16.0",
+    "pusher": "^2.2.0",
     "sequelize": "^5.3.5",
     "serve-favicon": "^2.5.0"
   }

@@ -1,11 +1,12 @@
 var createError = require('http-errors');
+const jwt = require('jsonwebtoken');
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('cors');
+var cors = require('cors'); //share resources btn front and backend
 var bodyParser = require('body-parser');
 const errorHandler = require('errorhandler');
 
@@ -42,7 +43,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
-// ERROR HANLERS 
+// ERROR HANLERS
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
