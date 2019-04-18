@@ -5,7 +5,7 @@ var User = {
         return db.query("Select * from systemusers", callback);
     },
     getUserById: function(id, callback) {
-      return db.query("Select * from systemusers where Id = ?", [id], callback);
+      return db.query("Select * from systemusers where Userid = ?", [id], callback);
     },
     addUser: function(User, callback) {
         let sql = 'INSERT INTO systemusers (name, username, email, password) VALUES (?,?,?,?)';
@@ -17,7 +17,7 @@ var User = {
         return db.query("delete from systemusers where Id = ?", [id], callback);
       },
       updateUser: function(id, User, callback){
-          let sql = "UPDATE systemusers SET name=?, username=? , email=?, password=? WHERE Id=?";
+          let sql = "UPDATE systemusers SET name=?, username=? , email=?, password=? WHERE Userid =?";
           let data = [User.name, User.username, User.email, User.password, id];
           return db.query(sql, data, callback );
       }
