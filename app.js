@@ -12,7 +12,7 @@ const errorHandler = require('errorhandler');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var tasksRouter = require('./routes/Tasks');
 
 
 //Configure isProduction variable
@@ -41,6 +41,7 @@ if(!isProduction) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tasks', tasksRouter);
 
 
 // ERROR HANLERS
