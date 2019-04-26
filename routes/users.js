@@ -7,9 +7,18 @@ const saltRounds = 10;
 // user authentication
 router.post('/authenticate', function(req, res, next){
   if(req.method == 'POST'){
-    console.log(req.params.username);
-    console.log(req.password);
-    // User.loginCheck(req.)
+    console.log('logging in');
+    // console.log(req.body.username);
+    // console.log(req.body.password);
+
+    User.loginCheck(req.body, function(err, rows){
+      if(err){
+         res.json(err);
+      }
+      else {
+        res.json(rows);
+      }
+    })
   }else res.json(err);
 })
 
@@ -32,7 +41,7 @@ router.get('/:id?', function(req, res, next) {
 
 // add user
 // router.post('/', function(req, res, next) {
-  
+
 //   User.addUser(req.body, function(err, count) {
 //     if (err) res.json(err);
 //     else {
@@ -43,7 +52,7 @@ router.get('/:id?', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   bcrypt.hash(req.body.passwordsinup, saltRounds, function(err, hash) {
-    
+
   })
   User.addUser(req.body, function(err, count) {
     if (err) res.json(err);
