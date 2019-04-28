@@ -2,7 +2,7 @@ var db = require('../dbconnection');
 
 var User = {
     getAllObservationslipForms: function(callback) {
-        return db.query("Select * from  observationslip ORDER BY Date DESC LIMIT 3", callback);
+        return db.query("Select * from  observationslip ORDER BY Date DESC LIMIT 50", callback);
     },
     getFormById: function(id, callback) {
       return db.query("Select * from systemusersTest where Userid = ?", [id], callback);
