@@ -5,7 +5,7 @@ var Form = require('../models/Form');
 //select observationslip form
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
-    Form.getFormById(req.params.id, function (err, rows) {
+    Form.getObservationslipFormById(req.params.id, function (err, rows) {
       if (err){
         res.json(err);
       } else {
@@ -24,7 +24,7 @@ router.get('/:id?', function(req, res, next) {
   }
 });
 
-//add new
+//add new user
 router.post('/', function (req, res, next ) {
     Form.addForm(req.body, function (err, count) {
         if (err) {
@@ -56,6 +56,45 @@ router.put('/:id', function (req, res, next ) {
       }
   });
 });
+
+
+
+// STATION
+
+  // add new station
+      router.post('/station', function (req, res, next ) {
+        Form.addStation(req.body, function (err, count) {
+            if (err) {
+              res.json(err);
+            } else {
+              res.json(req.body);
+            }
+          });
+    });
+    
+    // return  station(s)
+    router.get('getStation/:id?', function(req, res, next) {
+      console.log('yes 1')
+      if (req.params.id) {
+        Form.getStationById(req.params.id, function (err, rows) {
+          if (err){
+            res.json(err);
+          } else {
+            res.json(rows);
+          }
+        });
+      } else{
+        // get all
+        Form.getAllStations( function (err, rows ) {
+          console.log('yes')
+          if (err) {
+            res.json(err);
+          } else {
+            res.json (rows);
+          }
+        });
+      }
+    });
 
 
 module.exports = router;

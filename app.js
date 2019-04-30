@@ -10,10 +10,13 @@ var cors = require('cors'); //share resources btn front and backend
 var bodyParser = require('body-parser');
 const errorHandler = require('errorhandler');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/Tasks');
 var formsRouter = require('./routes/Forms');
+var stationsRouter = require('./routes/Stations');
+
 
 
 //Configure isProduction variable
@@ -44,6 +47,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
 app.use('/forms', formsRouter);
+app.use('/stations', stationsRouter);
 
 
 // ERROR HANLERS

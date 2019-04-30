@@ -1,19 +1,16 @@
 var db = require('../dbconnection');
 
-var User = {
+var ObservationslipForm = {
+  
     getAllObservationslipForms: function(callback) {
         return db.query("Select * from  observationslip ORDER BY Date DESC LIMIT 50", callback);
     },
-    getFormById: function(id, callback) {
+    getObservationslipFormById: function(id, callback) {
       return db.query("Select * from systemusersTest where Userid = ?", [id], callback);
     },
      addObservationSlip: function(User, callback) {
-      console.log(User);
         let sql = 'INSERT INTO systemusersTest (station, FirstName, SurName, UserName, UserPassword, UserRole, UserEmail, UserPhone) VALUES (?,?,?,?,?,?,?,?)';
         return db.query(sql,[User.station, User.FirstName, User.SurName, User.UserName,User.UserPassword, User.UserRole,User.UserEmail, User.UserPhone], callback );
-
-
-
       },
       deleteObservationslip: function(id, callback) {
         return db.query("delete from systemusersTest where Userid = ?", [id], callback);
@@ -25,4 +22,4 @@ var User = {
       }
 };
 
-module.exports = User;
+module.exports = ObservationslipForm;
