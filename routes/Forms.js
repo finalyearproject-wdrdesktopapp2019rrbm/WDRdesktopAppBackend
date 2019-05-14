@@ -26,7 +26,8 @@ router.get('/:id?', function(req, res, next) {
 
 //add new user
 router.post('/', function (req, res, next ) {
-    Form.addForm(req.body, function (err, count) {
+    Form.addObservationSlip(req.body, function (err, count) {
+      console.log(req.body)
         if (err) {
           res.json(err);
         } else {
