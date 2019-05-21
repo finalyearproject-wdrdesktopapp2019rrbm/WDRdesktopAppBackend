@@ -27,6 +27,7 @@ Observationslip.CI_OfPrecipitation, Observationslip.BE_OfPrecipitation,Observati
 Observationslip.T_H_Graph, Observationslip.DeviceType], callback);
     
   },
+  
       deleteObservationslip: function(id, callback) {
         return db.query("delete from systemusersTest where Userid = ?", [id], callback);
       },
