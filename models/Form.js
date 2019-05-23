@@ -6,7 +6,7 @@ var ObservationslipForm = {
         return db.query("Select * from  syncobservationslip ORDER BY Date DESC LIMIT 3", callback);
     },
     countSyncObservationslipForms: function(callback) {
-      return db.query("Select * COUNT(*) from  syncobservationslip ORDER BY Date DESC LIMIT 3", callback);
+      return db.query("Select COUNT(*) AS number from  syncobservationslip ", callback);
   },
     getObservationslipFormById: function(id, callback) {
       return db.query("Select * from systemusersTest where Userid = ?", [id], callback);

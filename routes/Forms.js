@@ -3,21 +3,25 @@ var router = express.Router();
 var Form = require('../models/Form');
 
 //select observationslip form
-// router.get('/count', function (err, rows) {
-//   Form.countSyncObservationslipForms(function (err, count){
-//     if(err){
-//       res.json(err)
-//     } else {
-//       res.json(count)
-//     }
-//   });
-// });
+router.get('/count', function (rq, res, next) {
+  console.log('count')
+  Form.countSyncObservationslipForms(function (err, count){
+    if(err){
+      res.json(err)
+    } else {
+      // console.log(rows.length);
+      res.json(count)
+    }
+  });
+});
+
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
     Form.getObservationslipFormById(req.params.id, function (err, rows) {
       if (err){
         res.json(err);
       } else {
+        console.log(rows)
         res.json(rows);
       }
     });
@@ -40,7 +44,8 @@ router.post('/', function (req, res, next ) {
         if (err) {
           res.json(err);
         } else {
-          res.json(req.body);
+          // res.json(req.body);
+          res.json(count);
         }
       });
 });
@@ -81,7 +86,7 @@ router.put('/:id', function (req, res, next ) {
             }
           });
     });
-    
+
     // return  station(s)
     router.get('getStation/:id?', function(req, res, next) {
       console.log('yes 1')
