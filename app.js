@@ -15,7 +15,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/Tasks');
 var formsRouter = require('./routes/Forms');
-var formsRouterCount = require('./routes/Forms/count');
 var stationsRouter = require('./routes/Stations');
 
 
@@ -47,7 +46,7 @@ if(!isProduction) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
-app.use('/forms', formsRouter);
+app.use('/forms', formsRouter)
 app.use('/stations', stationsRouter);
 
 
