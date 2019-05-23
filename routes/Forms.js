@@ -3,6 +3,15 @@ var router = express.Router();
 var Form = require('../models/Form');
 
 //select observationslip form
+router.get('/count', function (err, rows) {
+  Form.countSyncObservationslipForms(function (err, count){
+    if(err){
+      res.json(err)
+    } else {
+      res.json(count)
+    }
+  });
+});
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
     Form.getObservationslipFormById(req.params.id, function (err, rows) {

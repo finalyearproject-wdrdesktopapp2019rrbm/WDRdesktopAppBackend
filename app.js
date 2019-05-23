@@ -15,6 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/Tasks');
 var formsRouter = require('./routes/Forms');
+var formsRouterCount = require('./routes/Forms/count');
 var stationsRouter = require('./routes/Stations');
 
 
