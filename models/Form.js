@@ -47,6 +47,12 @@ var ObservationslipForm = {
       Observationslip.T_H_Graph, Observationslip.DeviceType], callback);
 
         },
+        updateSyncStatus: function(id, synData, callback) {
+          let sql = "UPDATE syncobservationslip SET updateSyncStatus=? WHERE id=?";
+          let data = ['1'];
+          return db.query(sql, data, callback);
+        },
+
       deleteObservationslip: function(id, callback) {
         return db.query("delete from systemusersTest where Userid = ?", [id], callback);
       },

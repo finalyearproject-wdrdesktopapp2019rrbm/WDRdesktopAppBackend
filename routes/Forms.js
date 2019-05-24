@@ -3,7 +3,7 @@ var router = express.Router();
 var Form = require('../models/Form');
 
 //select observationslip form
-router.get('/count', function (rq, res, next) {
+router.get('/count', function (req, res, next) {
   console.log('count')
   Form.countSyncObservationslipForms(function (err, count){
     if(err){
@@ -15,17 +15,20 @@ router.get('/count', function (rq, res, next) {
   });
 });
 
-router.get('/updateSyncStatus', function (rq, res, next) {
-  console.log('sync status uppdate');
-  
-  Form.countSyncObservationslipForms(function (err, count){
-    if(err){
-      res.json(err)
-    } else {
-      // console.log(rows.length);
-      res.json(count)
-    }
-  });
+//update sync status
+router.put('/updateSyncStatus', function (req, res, next ) {
+  console.log('sync status update');
+  console.log(rq.body);
+
+    Form.updateSyncStatus(req.body, function (err, count) {
+      console.log(req.body)
+        if (err) {
+          res.json(err);
+        } else {
+          // res.json(req.body);
+          res.json(count);
+        }
+      });
 });
 
 router.get('/:id?', function(req, res, next) {
