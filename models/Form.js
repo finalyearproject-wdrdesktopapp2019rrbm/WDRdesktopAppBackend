@@ -6,7 +6,11 @@ var ObservationslipForm = {
         return db.query("Select * from  syncobservationslip ORDER BY Date DESC LIMIT 3", callback);
     },
     countSyncObservationslipForms: function(callback) {
-      return db.query("Select COUNT(*) AS number from  syncobservationslip ", callback);
+      return db.query("Select COUNT(*) AS number from  syncobservationslip WHERE SyncStatus = '0'", callback);
+  },
+  selectJustAddedRecord: function(callback){
+    return db.query("Select * from syncobservationslip ORDER BY O_CreationDate LIMIT 1", callback);
+
   },
     getObservationslipFormById: function(id, callback) {
       return db.query("Select * from systemusersTest where Userid = ?", [id], callback);

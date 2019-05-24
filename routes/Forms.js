@@ -53,14 +53,23 @@ router.get('/:id?', function(req, res, next) {
   }
 });
 
-//add new user
+//add observationslip data
 router.post('/', function (req, res, next ) {
     Form.addObservationSlip(req.body, function (err, count) {
       console.log(req.body)
         if (err) {
           res.json(err);
         } else {
-          res.json(req.body);
+          // get the recent added record
+          Form.selectJustAddedRecord(function(err, rows) {
+            if(err){
+              res.json(err);
+            }else{
+              console.log(rows);
+              res.json(rows)
+            }
+          })
+          // res.json(req.body);
           // res.json(count);
         }
       });
