@@ -46,7 +46,7 @@ var ObservationslipForm = {
       Observationslip.CI_OfPrecipitation, Observationslip.BE_OfPrecipitation,Observationslip.IndicatorOfTypeOfIntrumentation, Observationslip.SignOfPressureChange, Observationslip.Supp_Info, Observationslip.VapourPressure,
       Observationslip.T_H_Graph, Observationslip.DeviceType], callback);
 
-        }, 
+        },
       deleteObservationslip: function(id, callback) {
         return db.query("delete from systemusersTest where Userid = ?", [id], callback);
       },

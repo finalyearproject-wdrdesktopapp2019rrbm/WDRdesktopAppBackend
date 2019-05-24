@@ -15,6 +15,19 @@ router.get('/count', function (rq, res, next) {
   });
 });
 
+router.get('/updateSyncStatus', function (rq, res, next) {
+  console.log('sync status uppdate');
+  
+  Form.countSyncObservationslipForms(function (err, count){
+    if(err){
+      res.json(err)
+    } else {
+      // console.log(rows.length);
+      res.json(count)
+    }
+  });
+});
+
 router.get('/:id?', function(req, res, next) {
   if (req.params.id) {
     Form.getObservationslipFormById(req.params.id, function (err, rows) {
@@ -44,8 +57,8 @@ router.post('/', function (req, res, next ) {
         if (err) {
           res.json(err);
         } else {
-          // res.json(req.body);
-          res.json(count);
+          res.json(req.body);
+          // res.json(count);
         }
       });
 });
