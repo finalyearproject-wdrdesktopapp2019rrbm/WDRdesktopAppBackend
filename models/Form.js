@@ -52,8 +52,10 @@ var ObservationslipForm = {
 
         },
         updateSyncStatus: function(id, synData, callback) {
-          let sql = "UPDATE syncobservationslip SET updateSyncStatus=? WHERE id=?";
-          let data = ['1'];
+          console.log('update here');
+          console.log(syncData);
+          let sql = "UPDATE syncobservationslip SET SyncStatus=? WHERE id=?";
+          let data = [1,3];
           return db.query(sql, data, callback);
         },
 
