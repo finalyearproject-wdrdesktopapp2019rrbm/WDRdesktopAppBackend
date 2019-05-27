@@ -18,7 +18,7 @@ router.get('/count', function (req, res, next) {
 //update sync status
 router.put('/updateSyncStatus', function (req, res, next ) {
   console.log('sync status update');
-  console.log(rq.body);
+  console.log(req.body);
 
     Form.updateSyncStatus(req.body, function (err, count) {
       console.log(req.body)

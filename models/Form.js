@@ -9,7 +9,7 @@ var ObservationslipForm = {
       return db.query("Select COUNT(*) AS number from  syncobservationslip WHERE SyncStatus = '0'", callback);
   },
   selectJustAddedRecord: function(callback){
-    return db.query("Select * from syncobservationslip ORDER BY O_CreationDate LIMIT 1", callback);
+    return db.query("Select * from syncobservationslip ORDER BY O_CreationDate DESC LIMIT 1", callback);
 
   },
     getObservationslipFormById: function(id, callback) {
@@ -52,7 +52,7 @@ var ObservationslipForm = {
 
         },
         updateSyncStatus: function(id, synData, callback) {
-          console.log('update here');
+          console.log('here now ....update');
           console.log(syncData);
           let sql = "UPDATE syncobservationslip SET SyncStatus=? WHERE id=?";
           let data = [1,3];
