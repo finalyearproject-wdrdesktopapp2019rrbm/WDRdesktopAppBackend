@@ -7,20 +7,38 @@ router.get('/count', function (req, res, next) {
   console.log('count')
   Form.countSyncObservationslipForms(function (err, count){
     if(err){
-      res.json(err)
+      res.json(err);
     } else {
       // console.log(rows.length);
-      res.json(count)
+      res.json(count);
     }
   });
 });
 
-//update sync status
+// get local record to sync
+router.get('/recordToSync', function(req, res, next) {
+  console.log('get local record');
+  //select last added unsynced record
+  Form.selectJustAddedRecord(function(err, rows) {
+    if(err){
+      res.json(err);
+    }else{
+      console.log(rows);
+      res.json(rows)
+    }
+  })
+});
+
+// update sync status
 router.put('/updateSyncStatus', function (req, res, next ) {
   console.log('sync status update');
-  console.log(req.body);
+  console.log(req);
+  console.log('get id');
+  var data = req.body;
+  var id =data[0].id;
+  console.log(id);
 
-    Form.updateSyncStatus(req.body, function (err, count) {
+    Form.updateSyncStatus(id, req.body, function (err, count) {
       console.log(req.body)
         if (err) {
           res.json(err);
@@ -29,6 +47,25 @@ router.put('/updateSyncStatus', function (req, res, next ) {
           res.json(count);
         }
       });
+});
+
+router.put('/updateLocalDataStatus/:id', function (req, res, next ) {
+  //record initially stored 
+    var id = req.params.id;
+    console.log('Update local status');
+    console.log(req.params.id);
+
+    Form.updateSyncStatus(id, req.body, function (err, count) {
+      console.log(req.body)
+        if (err) {
+          res.json(err);
+        } else {
+          // res.json(req.body);
+          res.json(count);
+        }
+      });
+
+  
 });
 
 router.get('/:id?', function(req, res, next) {

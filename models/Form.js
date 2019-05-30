@@ -9,7 +9,7 @@ var ObservationslipForm = {
       return db.query("Select COUNT(*) AS number from  syncobservationslip WHERE SyncStatus = '0'", callback);
   },
   selectJustAddedRecord: function(callback){
-    return db.query("Select * from syncobservationslip ORDER BY O_CreationDate DESC LIMIT 1", callback);
+    return db.query("Select * from syncobservationslip WHERE SyncStatus = '0' ORDER BY O_CreationDate DESC LIMIT 1", callback);
 
   },
     getObservationslipFormById: function(id, callback) {
@@ -18,7 +18,7 @@ var ObservationslipForm = {
 
     addObservationSlip: function(Observationslip, callback) {
 
-      console.log(Observationslip)
+      console.log(Observationslip);
       //   let sql = "INSERT INTO observationslip(Date,id, Userid, Station, TIME, TotalAmountOfAllClouds, TotalAmountOfLowClouds,TypeOfLowClouds1,  OktasOfLowClouds1, HeightOfLowClouds1,CLCODEOfLowClouds1, TypeOfLowClouds2,OktasOfLowClouds2, HeightOfLowClouds2, CLCODEOfLowClouds2, TypeOfLowClouds3,OktasOfLowClouds3, HeightOfLowClouds3, CLCODEOfLowClouds3, TypeOfMediumClouds1,OktasOfMediumClouds1, HeightOfMediumClouds1, CLCODEOfMediumClouds1, TypeOfMediumClouds2, OktasOfMediumClouds2, HeightOfMediumClouds2,  CLCODEOfMediumClouds2, TypeOfMediumClouds3, OktasOfMediumClouds3, HeightOfMediumClouds3, CLCODEOfMediumClouds3, TypeOfHighClouds1,OktasOfHighClouds1,   HeightOfHighClouds1, CLCODEOfHighClouds1, TypeOfHighClouds2, OktasOfHighClouds2, HeightOfHighClouds2, CLCODEOfHighClouds2,TypeOfHighClouds3,  OktasOfHighClouds3, HeightOfHighClouds3, CLCODEOfHighClouds3, CloudSearchLightReading, Rainfall, Dry_Bulb, Wet_Bulb,   Max_Read,Max_Reset, Min_Read, Min_Reset, Piche_Read, Piche_Reset, TimeMarksThermo, TimeMarksHygro, TimeMarksRainRec, Present_Weather,  Present_WeatherCode,Past_Weather, Visibility, Wind_Direction, Wind_Speed, Gusting, AttdThermo, PrAsRead, Correction, CLP,   MSLPr, TimeMarksBarograph, TimeMarksAnemograph, OtherTMarks, Remarks, O_SubmittedBy, Approved, SoilMoisture, SoilTemperature, sunduration,  trend, windrun,Max_temp,Min_temp, speciormetar, UnitOfWindSpeed, IndOrOmissionOfPrecipitation,TypeOfStation_Present_Past_Weather, HeightOfLowestCloud, StandardIsobaricSurface, GPM, DurationOfPeriodOfPrecipitation, GrassMinTemp,   CI_OfPrecipitation, BE_OfPrecipitation, IndicatorOfTypeOfIntrumentation, SignOfPressureChange, Supp_Info, VapourPressure, T_H_Graph, DeviceType ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,?)";
       // return db.query(sql,[Observationslip.Date,null, Observationslip.Userid, Observationslip.Station, Observationslip.TIME,  Observationslip.TotalAmontOfAllClouds, Observationslip.TotalAmountOfLowClouds,Observationslip.TypeOfLowClouds1,Observationslip.OktasOfLowClouds1, Observationslip.HeightOfLowClouds1,Observationslip.CLCODEOfLowClouds1,  Observationslip.TypeOfLowClouds2,
       // Observationslip.OktasOfLowClouds2, Observationslip.HeightOfLowClouds2,Observationslip.CLCODEOfLowClouds2, Observationslip.TypeOfLowClouds3,Observationslip.OktasOfLowClouds3, Observationslip.HeightOfLowClouds3, Observationslip.CLCODEOfLowClouds3,
@@ -53,12 +53,20 @@ var ObservationslipForm = {
         },
         updateSyncStatus: function(id, synData, callback) {
           console.log('here now ....update');
-          console.log(syncData);
+          // console.log(syncData);
+          console.log('data up');
+          console.log(id);
+
           let sql = "UPDATE syncobservationslip SET SyncStatus=? WHERE id=?";
-          let data = [1,3];
+          let data = ['1',id];
+          console.log('executing query');
           return db.query(sql, data, callback);
         },
+        getUnsyncedObservationslip(){
+          consol.log('execute select')
+            return db.query("Select * from syncobservationslip WHERE SyncStatus = '0' ORDER BY O_CreationDate DESC LIMIT 1", callback);
 
+        },
       deleteObservationslip: function(id, callback) {
         return db.query("delete from systemusersTest where Userid = ?", [id], callback);
       },
