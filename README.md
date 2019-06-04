@@ -1,0 +1,2 @@
+# WDRdesktopAppBackend
+WDR DESKTOP APP is a desktop application designed for weather stations to help weather users store weather data, retrieve it, generate reports  and later synchronize this data to the main central data repository. the application works in place where internet connectivity is limited. it has the backend where all the modules for the system functionalities are designed from. this includes all the logic format of all the operations of the applicatio
