@@ -60,7 +60,6 @@ router.put('/updateLocalDataStatus/:id', function (req, res, next ) {
         if (err) {
           res.json(err);
         } else {
-          // res.json(req.body);
           res.json(count);
         }
       });
@@ -74,7 +73,6 @@ router.get('/:id?', function(req, res, next) {
       if (err){
         res.json(err);
       } else {
-        console.log(rows)
         res.json(rows);
       }
     });
@@ -112,6 +110,7 @@ router.post('/', function (req, res, next ) {
       });
 });
 
+
 //delete
 router.delete('/:id', function (req, res, next ) {
     Form.deleteForm(req.params.id, function (err, count) {
@@ -122,7 +121,16 @@ router.delete('/:id', function (req, res, next ) {
       }
   });
 });
-
+router.put('/updateObservationslip', function(req, res, next) {
+  Form.updateObservationSlipForm(req.body.id, req.body, function(err, rows){
+      if(err) {
+        console.log(err);
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+  });
+});
 // update
 router.put('/:id', function (req, res, next ) {
     Form.updateForm(req.params.id, req.body, function (err, rows) {
